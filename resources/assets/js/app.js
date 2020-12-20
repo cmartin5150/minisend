@@ -24,30 +24,32 @@ var emailList = new Vue({
 		from: '',
 		to: '',
 		subject: '',
-		status_id: 0
+		status_id: 0,
+		first_page_url: '',
+		prev_page_url: '',
+		next_page_url: '',
+		last_page_url: '',
+		total_results: 0,
+		current_page: 0,
+		last_page: 0
 	},
 	created () {
-		this.getEmailList()
+		this.submitSearch();
 	},
 	methods: {
-		getEmailList: function () {
+		submitSearch: function (event, url) {
 			var self = this;
 			
-			$.ajax({
-				url: '/get_emails',
-				method: 'GET',
-				data: {},
-				success: function (data) {
-					self.emailList = JSON.parse(data)
-				}
-			});	
-		},
-		
-		submitSearch: function () {			
-			var self = this;
+			console.log('url: ' + url);
+			
+			if(url === undefined || url == null || url == '') {
+				url = '/get_emails';
+			}
+			
+			console.log('url: ' + url);
 			
 			$.ajax({
-				url: '/get_emails',
+				url: url,
 				method: 'GET',
 				data: {
 					from: self.from,
@@ -56,9 +58,46 @@ var emailList = new Vue({
 					status_id: self.status_id
 				},
 				success: function (data) {
-					self.emailList = JSON.parse(data)
+					
+					console.log('success');
+					
+					var data_array = JSON.parse(data);
+					
+					self.emailList = data_array.data;
+					self.first_page_url = data_array.first_page_url;
+					self.prev_page_url = data_array.prev_page_url;
+					self.next_page_url = data_array.next_page_url;
+					self.last_page_url = data_array.last_page_url;
+					self.total_results = data_array.total;
+					self.current_page = data_array.current_page;
+					self.last_page = data_array.last_page;
+					
+					console.log('done');
 				}
 			});		
-		}
+		},
+		
+		firstPage: function(event) {
+			console.log('first');
+			this.submitSearch(event, this.first_page_url);
+			console.log('done');
+		},
+		
+		prevPage: function(event) {
+			console.log('prev');
+			this.submitSearch(event, this.prev_page_url);
+		},
+		
+		nextPage: function(event) {
+			console.log('next');
+			this.submitSearch(event, this.next_page_url);
+		},
+		
+		lastPage: function(event) {
+			console.log('last');
+			this.submitSearch(event, this.last_page_url);
+		},
+		
+		
 	}
 });

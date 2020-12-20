@@ -42,5 +42,17 @@
         	</tbody>
 		</table>        	
 		<p v-else>No Items Found</p>
-    </div>    
+		
+		<div>
+			<p>Results: @{{ total_results }}</p>
+		</div>
+		
+		<div>
+			<button v-on:click="firstPage" :disabled="current_page == 1">First Page</button>
+			<button v-on:click="prevPage" :disabled="prev_page_url == null">Previous Page</button>
+			<button v-on:click="nextPage" :disabled="next_page_url == null">Next Page</button>
+			<button v-on:click="lastPage" :disabled="current_page == last_page">Last Page</button>
+		</div>
+    </div> 
+       
 @endsection

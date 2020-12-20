@@ -59,9 +59,7 @@ class EmailController extends Controller
     {   
         //error_log(__CLASS__ . '::' . __FUNCTION__ . '() ' . print_r($request->input(), true));
         
-        // TODO handle pagination
-        
-        $limit = 20;
+        $results_per_page = 10;
         
         $query = Email::with('status');
         
@@ -82,12 +80,11 @@ class EmailController extends Controller
         }
                 
         $query->orderBy('id', 'DESC');
-        $query->limit($limit);
         
-        //error_log(__CLASS__ . '::' . __FUNCTION__ . '() [' . __LINE__ . '] sql ' . $email_list->toSql());
+        //error_log(__CLASS__ . '::' . __FUNCTION__ . '() [' . __LINE__ . '] sql ' . $query->toSql());
         
-        $email_list = $query->get();
-                
+        $email_list = $query->paginate($results_per_page);
+        
         return json_encode($email_list);
     }
     
