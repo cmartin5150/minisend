@@ -18,10 +18,10 @@
     			<input type="text" name="subject" value="{{ Request::old('subject') }}" placeholder="Subject">
     		</li>		
     		<li>		
-    			<input type="text" name="content_plain" value="{{ Request::old('content_plain') }}" placeholder="Plaintext Content">
+    			<textarea name="content_plain" value="{{ Request::old('content_plain') }}" placeholder="Plaintext Content" rows=10></textarea>
     		</li>
     		<li>		
-    			<input type="text" name="content_html" value="{{ Request::old('content_html') }}" placeholder="HTML Content">
+    			<textarea name="content_html" value="{{ Request::old('content_html') }}" placeholder="HTML Content" rows=10></textarea>
     		</li>
     	</ul>	
     	<input type="submit" value="Send">

@@ -6,35 +6,35 @@
     <table>
     	<tr>
     		<td>ID:</td>
-    		<td>{{ $email->id }}</td>
+    		<td><input readonly value="{{ $email->id }}"></td>
     	</tr>
     	<tr>
     		<td>Status:</td>
-    		<td>{{ $email->status->name }}</td>
+    		<td><input readonly value="{{ $email->status->name }}"></td>
     	</tr>
     	<tr>
     		<td>Send Attempts:</td>
-    		<td>{{ $email->send_attempts }}</td>
+    		<td><input readonly value="{{ $email->send_attempts }}"></td>
     	</tr>
     	<tr>
     		<td>From:</td>
-    		<td>{{ $email->from }}</td>
+    		<td><input readonly value="{{ $email->from }}"></td>
     	</tr>
     	<tr>
     		<td>To:</td>
-    		<td>{{ $email->to }}</td>
+    		<td><input readonly value="{{ $email->to }}"></td>
     	</tr>
     	<tr>
     		<td>Subject:</td>
-    		<td>{{ $email->subject }}</td>
+    		<td><input readonly value="{{ $email->subject }}"></td>
     	</tr>
     	<tr>
     		<td>Content (Plaintext):</td>
-    		<td>{{ $email->content_plain }}</td>
+    		<td><textarea rows=10 readonly>{{ $email->content_plain }}</textarea></td>
     	</tr>
     	<tr>
     		<td>Content (HTML):</td>
-    		<td>{{ $email->content_html }}</td>
-    	</tr>
+    		<td><textarea rows=10 readonly>{{ $email->content_html }}</textarea></td>
+    	</tr>    	
     </table>
 @endsection
