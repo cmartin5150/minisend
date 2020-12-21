@@ -2,6 +2,11 @@
 
 namespace App\Classes;
 
+/**
+ * 
+ * Class to manage sending emails.
+ *
+ */
 class MailSendManager
 {
     // the number of emails to attempt to send on each run

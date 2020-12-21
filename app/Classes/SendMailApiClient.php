@@ -2,6 +2,12 @@
 
 namespace App\Classes;
 
+/**
+ * 
+ * Class to send emails via an API.
+ * There is no API configured so this class simulates sending and returning a success status
+ *
+ */
 class SendMailApiClient
 {
     public static function sendEmail()
@@ -13,6 +19,10 @@ class SendMailApiClient
         return self::generateSuccessStatus();
     }
     
+    /**
+     * generates a success status.
+     * @return boolean
+     */
     private static function generateSuccessStatus()
     {
         // use to always return success == true
