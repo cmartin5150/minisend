@@ -1,5 +1,7 @@
 <html>
 	<head>
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		
 		<title>MiniSend - @yield('title')</title>
 		
 		<!-- Fonts -->

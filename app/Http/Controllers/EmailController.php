@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Classes\EmailAttachment;
+use App\Classes\MailSendManager;
 
 class EmailController extends Controller
 {
@@ -20,8 +21,7 @@ class EmailController extends Controller
     public function submitEmail(Request $request)
     {        
         //error_log(__CLASS__ . '::' . __FUNCTION__ . '() ' . print_r($request->input(), true));
-        
-        
+                
         $attachment_max_size_mb = 2;
         $attachment_max_size_kb = 1000 * $attachment_max_size_mb;
         
@@ -158,5 +158,10 @@ class EmailController extends Controller
         ob_end_clean();
                 
         return $response;
+    }
+    
+    public function processEmailQueue()
+    {
+        MailSendManager::processMailQueue();
     }
 }

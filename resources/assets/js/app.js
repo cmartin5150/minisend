@@ -39,14 +39,10 @@ var emailList = new Vue({
 	methods: {
 		submitSearch: function (event, url) {
 			var self = this;
-			
-			console.log('url: ' + url);
-			
+						
 			if(url === undefined || url == null || url == '') {
 				url = '/get_emails';
 			}
-			
-			console.log('url: ' + url);
 			
 			$.ajax({
 				url: url,
@@ -58,9 +54,7 @@ var emailList = new Vue({
 					status_id: self.status_id
 				},
 				success: function (data) {
-					
-					console.log('success');
-					
+										
 					var data_array = JSON.parse(data);
 					
 					self.emailList = data_array.data;
@@ -70,34 +64,37 @@ var emailList = new Vue({
 					self.last_page_url = data_array.last_page_url;
 					self.total_results = data_array.total;
 					self.current_page = data_array.current_page;
-					self.last_page = data_array.last_page;
-					
-					console.log('done');
+					self.last_page = data_array.last_page;					
 				}
 			});		
 		},
 		
 		firstPage: function(event) {
-			console.log('first');
 			this.submitSearch(event, this.first_page_url);
-			console.log('done');
 		},
 		
 		prevPage: function(event) {
-			console.log('prev');
 			this.submitSearch(event, this.prev_page_url);
 		},
 		
 		nextPage: function(event) {
-			console.log('next');
 			this.submitSearch(event, this.next_page_url);
 		},
 		
 		lastPage: function(event) {
-			console.log('last');
 			this.submitSearch(event, this.last_page_url);
 		},
 		
-		
+		processQueue: function(event) {					
+			$.ajax({
+				url: '/process_email_queue',
+				method: 'GET',
+				data: {					
+				},
+				success: function (data) {
+					this.submitSearch(event);
+				}.bind(this)
+			});
+		},
 	}
 });

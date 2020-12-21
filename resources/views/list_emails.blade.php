@@ -6,19 +6,26 @@
 
     <div id="email_list">
     
-        <input type="text" v-model="from" value="" placeholder="Sender">
-    	<input type="text" v-model="to" value="" placeholder="Recipient">
-    	<input type="text" v-model="subject" value="" placeholder="Subject">
-    	
-    	<select v-model="status_id">
-    		<option value="0">All</option>    		
-    		@foreach ($statuses as $status)
-        		<option value="{{ $status->status_id }}">{{ $status->name }}</option>
-    		@endforeach    		
-    	</select>
-    	
-    	<button v-on:click="submitSearch">Search</button>
-    	
+    	<div>
+    		<input type="text" v-model="from" value="" placeholder="Sender">
+        	<input type="text" v-model="to" value="" placeholder="Recipient">
+        	<input type="text" v-model="subject" value="" placeholder="Subject">
+        	
+        	<select v-model="status_id">
+        		<option value="0">All</option>    		
+        		@foreach ($statuses as $status)
+            		<option value="{{ $status->status_id }}">{{ $status->name }}</option>
+        		@endforeach    		
+        	</select>
+        	
+        	<button v-on:click="submitSearch">Search</button>
+        	
+    	</div>
+        
+        <div>
+        	<button v-on:click="processQueue">Process Queued Emails</button>
+        </div>
+        
         <table v-if="emailList.length">
         	<thead>
         		<th>ID</th>
