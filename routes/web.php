@@ -1,3 +1,4 @@
+
 <?php
 
 /*
@@ -20,3 +21,4 @@ Route::post('/submit_email', 'EmailController@submitEmail')->name('submit_email'
 Route::get('/list_emails', 'EmailController@listEmails')->name('list_emails');
 Route::get('/get_emails', 'EmailController@getEmails')->name('get_emails');
 Route::get('/show_email/{id}', 'EmailController@showEmail')->name('show_email');
+Route::get('/download_attachment/{id}', 'EmailController@downloadAttachment')->name('download_attachment');

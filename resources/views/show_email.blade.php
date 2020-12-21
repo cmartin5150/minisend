@@ -35,6 +35,18 @@
     	<tr>
     		<td>Content (HTML):</td>
     		<td><textarea rows=10 readonly>{{ $email->content_html }}</textarea></td>
-    	</tr>    	
+    	</tr>
+    	@if(!empty($email->attachments))
+    		<tr>
+    			<td>Attachments:</td>
+    			<td>
+    				<ul>
+    					@foreach($email->attachments as $attachment)
+    						<li><a href="{{ route('download_attachment', ['id' => $attachment->id]) }}">{{ $attachment->name }}</a></li>
+    					@endforeach
+    				</ul>    				
+    			</td>
+    		</tr>
+    	@endif
     </table>
 @endsection

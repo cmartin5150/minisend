@@ -21,4 +21,9 @@ class Email extends Model
     {
         return $this->hasOne(EmailStatus::class, 'status_id', 'status_id');
     }
+    
+    public function attachments()
+    {
+        return $this->hasMany(EmailAttachment::class, 'email_id', 'id');
+    }
 }

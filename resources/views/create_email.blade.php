@@ -3,7 +3,7 @@
 @section('title', 'Create an Email')
 
 @section('content')
-    <form action="{{ route('submit_email') }}" method="post" >
+    <form action="{{ route('submit_email') }}" method="post" enctype="multipart/form-data">
     
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
     	    
@@ -22,6 +22,9 @@
     		</li>
     		<li>		
     			<textarea name="content_html" value="{{ Request::old('content_html') }}" placeholder="HTML Content" rows=10></textarea>
+    		</li>
+    		<li>
+    			<input name="attachment[]" type="file" multiple>
     		</li>
     	</ul>	
     	<input type="submit" value="Send">
